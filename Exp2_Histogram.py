@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-img = cv2.imread('demo_image.jpg')
+img = cv2.imread('lenna.jpg')
 
 # Convert BGR to RGB for correct display
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -23,14 +23,9 @@ for i in range(h):
 # Plotting
 plt.figure(figsize=(12, 8))
 
-# Original RGB image
-plt.subplot(2, 2, 1)
-plt.imshow(img_rgb)
-plt.title("Original RGB Image")
-plt.axis("off")
 
 # Grayscale image
-plt.subplot(2, 2, 2)
+plt.subplot(2, 2, 1)
 plt.imshow(gray, cmap='gray')
 plt.title("Grayscale Image")
 plt.axis("off")
@@ -43,6 +38,12 @@ plt.xlabel("Intensity Value")
 plt.ylabel("Frequency")
 plt.xlim([0, 255])
 plt.grid()
+
+# Original RGB image
+plt.subplot(2, 2, 2)
+plt.imshow(img_rgb)
+plt.title("Original RGB Image")
+plt.axis("off")
 
 # RGB histogram
 plt.subplot(2, 2, 4)
