@@ -18,18 +18,13 @@ k = 1.5
 h, w = S.shape
 for i in range(h):
     for j in range(w):
-        new_val = int(S[i, j] * k)
-        if new_val > 255:
-            new_val = 255
+        new_val = min(int(S[i, j] * k),255)
         S[i, j] = new_val
 
-# Merge and convert back
-enhanced_hsv = cv2.merge((H, S, V))
-enhanced_bgr = cv2.cvtColor(enhanced_hsv, cv2.COLOR_HSV2BGR)
-
-# Convert BGR to RGB for matplotlib
+# Merge and Convert
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-enhanced_rgb = cv2.cvtColor(enhanced_bgr, cv2.COLOR_BGR2RGB)
+enhanced_hsv = cv2.merge((H, S, V))
+enhanced_img = cv2.cvtColor(enhanced_hsv, cv2.COLOR_HSV2RGB)
 
 plt.figure(figsize=(10, 4))
 
@@ -39,7 +34,7 @@ plt.title("Original Image")
 plt.axis("off")
 
 plt.subplot(1, 2, 2)
-plt.imshow(enhanced_rgb)
+plt.imshow(enhanced_img)
 plt.title("Color Enhanced Image")
 plt.axis("off")
 
